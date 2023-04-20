@@ -1,0 +1,56 @@
+<ion-content>
+  <ion-buttons class="fixed top-0 left-0 z-10">
+    <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
+  </ion-buttons>
+  <div class="bg-gray-200 mb-3 h-[60%] overflow-hidden shadow-lg">
+    <swiper-container [slidesPerView]="1" [centeredSlides]="true" [spaceBetween]="10" [pagination]="true" [loop]="true"
+      class="h-full">
+      <swiper-slide *ngFor="let imagen of imagenes">
+        <div class="h-full bg-[#2c353b] flex">
+          <img class="object-cover" [src]="imagen?.url" />
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <!-- INFO SECTION -->
+<div class="bg-green-100 px-2 min-h-[40%] rounded-md">
+  <h1 class="text-3xl font-bold uppercase text-green-500">{{servicio.nombre}}</h1>
+  <div class="">
+    <span class="font-semibold text-gray-600" >Correo:</span>
+    <small class="font-light ">{{servicio.contacto_correo}}</small>
+  </div>
+  <div>
+    <span class="font-semibold text-gray-600">Telefono:</span>
+    <small class="font-light ">{{servicio.contacto_tel}}</small>
+  </div>
+  <div class="flex justify-between pr-4">
+    <span class="font-semibold text-gray-600">Ubicacion</span>
+    <ion-icon name="map"></ion-icon>
+  </div>
+  <div  class="py-2">
+    <span class="font-semibold text-gray-600">Descripcion</span>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores unde doloremque ut voluptas laboriosam iure cumque, velit eius ab nisi dignissimos hic facilis, consectetur deleniti animi beatae. Libero, hic beatae.
+    </p>
+  </div>
+</div>
+
+  <!-- COMENTARIO SECCTION -->
+  <div class="bg-gray-200 block mt-3 pb-3 overflow-hidden rounded-md">
+    <form [formGroup]="comentarioForm" (ngSubmit)="crearComentario(servicio.idHoteles)" class="my-5">
+      <div class="bg-white rounded-md shadow-md p-2 mx-1 flex items-start gap-1">
+        <ion-icon name="pencil"></ion-icon>
+        <textarea id="comment" rows="2" formControlName="comentario" type="text"  placeholder="Escribe un comentario..." class="h-auto min-w-[90%] focus:border-fuchsia-300 focus:ring-0 border-transparent border-2 rounded-sm mr-2 focus:outline-none"></textarea>
+      </div>
+      <input type="submit" value="Publicar" class="bg-green-300 text-white rounded-md py-1 px-2 mt-2 ml-1 hover:bg-green-500 font-semibold " />
+    </form>
+
+
+    <h2 class="font-semibold text-black capitalize mx-2">Comentarios</h2>
+    <p class="mx-2" *ngIf="servicio.comentarios.length < 1">No hay comentarios</p>
+    <div *ngFor="let comentario of servicio?.comentarios">
+      <app-card-comentario [comentario]="comentario"></app-card-comentario>
+    </div>
+  </div>
+</ion-content>

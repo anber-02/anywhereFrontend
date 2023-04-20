@@ -1,0 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ion-content{
+  --background: linear-gradient(0deg, rgba(0,0,0,.5),rgba(0,0,0,.5)),
+  url("../../../../assets/pexels-laura-paredis-15272770.jpg") no-repeat center center / cover;
+  background-size: contain;
+}
+
+.login{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60vh;
+  position: absolute;
+  background-color: white;
+  border-radius: 1rem 1rem 0 0;
+}
+
+// Elimina el paddign en ion-item
+ion-item{
+  --padding-start: 0px;
+}
+

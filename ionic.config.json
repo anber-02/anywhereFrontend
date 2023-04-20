@@ -1,0 +1,7 @@
+{
+  "name": "anywheree",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

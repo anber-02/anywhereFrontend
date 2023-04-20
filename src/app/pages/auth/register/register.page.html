@@ -1,0 +1,92 @@
+<ion-content class="bg-gray-600">
+  <ion-buttons class="fixed top-0 left-0 z-10">
+    <ion-back-button defaultHref="/login" class="text-white"></ion-back-button>
+  </ion-buttons>
+  <main class="px-4">
+
+
+    <div class="mt-10">
+      <img src="../../../assets/logoAnywhereColorized.png" />
+    </div>
+
+
+    <form [formGroup]="registerData" (ngSubmit)="register()" class="grid gap-2 mt-4">
+      <div class="bg-gray-800">
+        <ion-label class="block text-center text-white ">Nombre</ion-label>
+        <ion-input formControlName="name" type="text" required class="bg-white rounded-3xl pl-4"></ion-input>
+
+        <div *ngIf="registerData.get('name')?.touched && registerData.get('name')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+          <small *ngIf="registerData.get('name')?.hasError('required')" >El nombre es obligatorio</small>
+          <small *ngIf="registerData.get('name')?.hasError('pattern')" >El nombre debe contener solo letras y espacios</small>
+        </div>
+        <div *ngIf="registerData.get('name')?.touched && registerData.get('name')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+          <small>Nombre valido</small>
+        </div>
+
+      </div>
+      
+      <div class="bg-gray-800">
+        <ion-label class="block text-center text-white ">Apellidos</ion-label>
+        <ion-input formControlName="last_name" type="text" required class="bg-white rounded-3xl pl-4" onkeypress="return /[a-zA-Z\s]/i.test(event.key)" pattern="[a-zA-Z ]+" required></ion-input>
+
+        <div *ngIf="registerData.get('last_name')?.touched && registerData.get('last_name')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+          <small *ngIf="registerData.get('last_name')?.hasError('required')" >El apellido es obligatorio</small>
+          <small *ngIf="registerData.get('last_name')?.hasError('pattern')" >El apellido debe contener solo letras y espacios</small>
+        </div>
+        <div *ngIf="registerData.get('last_name')?.touched && registerData.get('last_name')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+          <small>Apellido valido</small>
+        </div>
+
+      </div>
+
+      <div class="bg-gray-800">
+        <ion-label class="block text-center text-white ">Numero celular</ion-label>
+        <ion-input formControlName="num_tel" type="number" required class="bg-white rounded-3xl pl-4"></ion-input>
+
+        <div *ngIf="registerData.get('num_tel')?.touched && registerData.get('num_tel')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+          <small *ngIf="registerData.get('num_tel')?.hasError('required')" >El telefono es obligatorio</small>
+          <small *ngIf="registerData.get('num_tel')?.hasError('minlength')" >El telefono debe contener minimo 9 caracteres</small>
+        </div>
+        <div *ngIf="registerData.get('num_tel')?.touched && registerData.get('num_tel')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+          <small>Telefono valido</small>
+        </div>
+      </div>
+      <div class="bg-gray-800">
+        <ion-label class="block text-center text-white ">Correo electronico</ion-label>
+        <ion-input formControlName="email" type="email" required class="bg-white rounded-3xl pl-4"></ion-input>
+
+        <div *ngIf="registerData.get('email')?.touched && registerData.get('email')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+          <small *ngIf="registerData.get('email')?.hasError('required')" >El correo es obligatorio</small>
+          <small *ngIf="registerData.get('email')?.hasError('email')" >Correo invalido</small>
+          <small *ngIf="registerData.get('email')?.hasError('pattern')" >Correo invalido</small>
+        </div>
+        <div *ngIf="registerData.get('email')?.touched && registerData.get('email')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+          <small>Correo valido</small>
+        </div>
+      </div>
+
+      <div class="bg-gray-800">
+        <ion-label class="block text-center text-white ">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password" required class="bg-white rounded-3xl pl-4"></ion-input>
+
+        <div *ngIf="registerData.get('password')?.touched && registerData.get('password')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+          <small *ngIf="registerData.get('password')?.hasError('required')" >La contraseña obligatorio</small>
+          <small *ngIf="registerData.get('password')?.hasError('minlength')" >La contraseña debe contener minimo 8 caracteres</small>
+        </div>
+        <div *ngIf="registerData.get('password')?.touched && registerData.get('password')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+          <small>Contraseña valida</small>
+        </div>
+      </div>
+
+
+
+
+      <div class="flex flex-col items-center mt-3">
+        <button type="submit" [disabled]="registerData.invalid"
+          class="bg-fuchsia-400 rounded-3xl py-2 px-4 text-white tracking-widest font-semibold hover:bg-purple-400 cursor-pointer">Registrarse</button>
+      </div>
+      <small class="text-emerald-400">Toda la informacion solo es con fines de guardar tus preferencias como usuario de
+        Anywhere</small>
+    </form>
+  </main>
+</ion-content>

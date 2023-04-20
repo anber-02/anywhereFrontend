@@ -1,0 +1,10 @@
+<div class="bg-gray-100 mx-2 mt-4 rounded-md shadow-md px-3 py-2">
+  <div class="flex items-center gap-2">
+    <figure class="rounded-full h-10 w-10 overflow-hidden mb-1">
+      <img class="h-full w-full object-cover" [src]="comentario.users?.url_image || url" />
+    </figure>
+    <h3 *ngIf="comentario.users?.name">{{comentario.users?.name + ' ' + comentario.users?.last_name}}</h3>
+    <!-- <h3 *ngIf="userData.name">{{userData?.name + ' ' + userData?.last_name}}</h3> -->
+  </div>
+  <p class="font-light">{{comentario?.comentario}}</p>
+</div>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vista admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment scrollable (ionChange)="segmentChange($event)" [value]="typeSelected">
+    <!--se coloca este evento ionchange-->
+    <ion-segment-button *ngFor="let tipo of servicios" [value]="tipo.nombre">
+      <!--se hace un ngfor para que los segments buttons tomen lo valores de el array tipos-->
+      <!--se hace el value= tipo para que mande a consola el valor que se buscara-->
+      <span class="text-sm capitalize">{{tipo.nombre}}</span>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <ion-button (click)="createServicio()">
+      {{"Añadir " + typeSelected}}
+    </ion-button>
+    <ion-item *ngFor="let servicio of infoServicios" >
+      <app-card-view-admin [servicio]="servicio" [tipo]="typeSelected"></app-card-view-admin>
+    </ion-item>
+  </ion-list>
+</ion-content>

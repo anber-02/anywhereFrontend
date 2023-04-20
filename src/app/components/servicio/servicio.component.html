@@ -1,0 +1,10 @@
+<div class="min-h-full flex bg-red-300" (click)="navigate(lugares.idTiendas || lugares.idHoteles || lugares.idRestaurantes)">
+  <img class="object-cover" [src]="lugares.imagenes[0] === undefined ? url :lugares.imagenes[0].url " />
+  <div class="absolute bottom-0 left-0 right-0 text-white text-start  px-2 py-1 mb-2 backdrop-blur-sm">
+    <p class="font-semibold text-lg leading-3">{{lugares.nombre}}</p>
+    <small>{{lugares.direccion}}</small>
+    <!-- Muestra una modal con la informacion de la tienda -->
+  </div>
+</div>
+
+<!-- --background: #2c353b; -->

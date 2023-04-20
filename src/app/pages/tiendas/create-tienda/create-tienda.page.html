@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/vista-admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{this.id ? 'Actualizar Tienda' : 'Nueva Tienda'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="tiendaForm" (ngSubmit)="guardarProducto()">
+    <!-- fill="outline" -->
+    <ion-item >
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+    <div *ngIf="tiendaForm.get('nombre')?.touched && tiendaForm.get('nombre')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+      <small *ngIf="tiendaForm.get('nombre')?.hasError('required')" >El nombre es obligatorio</small>
+      <small *ngIf="tiendaForm.get('nombre')?.hasError('pattern')" >El nombre debe contener solo letras y espacios</small>
+    </div>
+    <div *ngIf="tiendaForm.get('nombre')?.touched && tiendaForm.get('nombre')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+      <small>Nombre valido</small>
+    </div>
+
+
+
+
+
+    <ion-item>
+      <ion-label position="floating"> Telefono:</ion-label>
+      <ion-input formControlName="contacto_tel" type="text" minlength="10" onkeypress="return /\d/.test(event.key)"></ion-input>
+    </ion-item>
+    <div *ngIf="tiendaForm.get('contacto_tel')?.touched && tiendaForm.get('contacto_tel')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+      <small *ngIf="tiendaForm.get('contacto_tel')?.hasError('required')" >El telefono es obligatorio</small>
+      <small *ngIf="tiendaForm.get('contacto_tel')?.hasError('minlength')" >El telefono debe contener minimo 10 caracteres</small>
+      <small *ngIf="tiendaForm.get('contacto_tel')?.hasError('maxlength')" >El telefono debe contener maximo 10 caracteres</small>
+      <small *ngIf="tiendaForm.get('contacto_tel')?.hasError('pattern')" >El telefono debe contener solo numeros</small>
+    </div>
+    <div *ngIf="tiendaForm.get('contacto_tel')?.touched && tiendaForm.get('contacto_tel')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+      <small>Telefono valido</small>
+    </div>
+
+
+    <ion-item>
+      <ion-label position="floating"> Correo:</ion-label>
+      <ion-input formControlName="contacto_correo" type="email"></ion-input>
+    </ion-item>
+
+    <div *ngIf="tiendaForm.get('contacto_correo')?.touched && tiendaForm.get('contacto_correo')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+      <small *ngIf="tiendaForm.get('contacto_correo')?.hasError('required')" >El correo es obligatorio</small>
+      <small *ngIf="tiendaForm.get('contacto_correo')?.hasError('email')" >El correo es invalido</small>
+    </div>
+    <div *ngIf="tiendaForm.get('contacto_correo')?.touched && tiendaForm.get('contacto_correo')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+      <small>correo valido</small>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input formControlName="direccion" type="text"></ion-input>
+    </ion-item>
+
+    <div *ngIf="tiendaForm.get('direccion')?.touched && tiendaForm.get('direccion')?.invalid"  class="text-sm text-red-600 font-semibold pl-4">
+      <small *ngIf="tiendaForm.get('direccion')?.hasError('required')" >El direccion es obligatorio</small>
+      <small *ngIf="tiendaForm.get('direccion')?.hasError('minlength')" >La direccion debe contener minimo 20 caracteres</small>
+    </div>
+    <div *ngIf="tiendaForm.get('direccion')?.touched && tiendaForm.get('direccion')?.valid" class="text-sm text-green-600 font-semibold pl-4">
+      <small>direccion valida</small>
+    </div>
+
+
+
+    <ion-button horizontal="center" block color="primary" type="submit">
+      {{this.id ? 'Actualizar' : 'Agregar' }}
+    </ion-button>
+  </form>
+  <!--  -->
+  <small *ngIf="this.msgError !== ''" class="text-red-500 mx-3">{{msgError}}</small>
+  <div (click)="takePicture()" class="px-3 py-1 mx-3 bg-gray-100 shadow-lg rounded-md flex items-center">
+    Seleccionar imagen
+  </div>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let image of imagenes; let i=index">
+        <figure class="relative">
+          <ion-button (click)="removeImage(i)" fill="clear" class="absolute right-0 top-0 text-red-500 p-0">
+            <ion-icon name="close-circle" class=" text-2xl"></ion-icon>
+          </ion-button>
+          <img class="h-full w-full" [src]="image.dataUrl || image.url" />
+        </figure>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

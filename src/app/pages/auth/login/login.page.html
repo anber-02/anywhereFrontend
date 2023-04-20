@@ -1,0 +1,39 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+<ion-content>
+  <header style="height: 40vh;" class="ion-padding-horizontal flex items-center ">
+      <ion-img src="../../../assets/logoAnywhereColorized.png"></ion-img>
+  </header>
+  <main>
+    <section class="login">
+      <div class="min-h-full px-7 py-6">
+        <h2 class="text-purple-600 font-semibold text-lg">Buenos dias, <span class="text-black">bienvenido.</span></h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="grid gap-3 mt-4">
+          <ion-item mode="ios" >
+            <!-- <ion-label position="stacked">Correo electronico</ion-label> -->
+            <ion-input  formControlName="email" type="email" required placeholder="Correo electronico"></ion-input>
+          </ion-item>
+          <ion-item mode="ios">
+            <!-- <ion-label >Contraseña</ion-label> -->
+            <ion-input formControlName="password" type="password" placeholder="Contraseña" required></ion-input>
+          </ion-item>
+
+          <div class="flex flex-col items-center">
+            <button type="submit" class="bg-purple-500 rounded-3xl py-2 px-4 text-white tracking-wider font-semibold hover:bg-purple-400 cursor-pointer">Iniciar sesion</button>
+          </div>
+        </form>
+
+        <div class="w-full flex flex-col items-center mt-5">
+          <p>¿Sin cuenta?</p>
+          <button routerLink="/register" class="bg-transparent text-green-600 font-semibold hover:text-gray-400">Registrarse</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+</ion-content>

@@ -1,0 +1,24 @@
+<div class="flex items-center gap-2 ">
+  <figure class="rounded-full h-10 w-10 min-w-[2.5rem] overflow-hidden shadow-md">
+    <img class="h-full w-full object-cover" [src]="servicio.imagenes[0] !== null ? servicio.imagenes[0]?.url : url" />
+  </figure>
+  <div>
+    <h3>
+      Nombre: 
+      <span class="capitalize">{{servicio.nombre}}</span>
+    </h3>
+    <p>
+      Direccion: 
+      <span class="font-light">{{servicio.direccion}}</span>
+    </p>
+  </div>
+
+  <ion-buttons class="flex flex-col">
+    <ion-button (click)="navigate(servicio.idTiendas || servicio.idHoteles || servicio.idRestaurantes)">
+      <ion-icon name="pencil" color="success"></ion-icon>
+    </ion-button>
+    <ion-button  (click)="handleDelete(servicio.idTiendas || servicio.idHoteles || servicio.idRestaurantes)">
+      <ion-icon name="trash" color="danger"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>

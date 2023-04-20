@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="flex flex-col items-center py-5 justify-center mt-6 px-3">
+    <figure class="h-44 w-44 rounded-full border-black border-2 overflow-hidden">
+      <img [src]="userData?.url_image !== null ? userData?.url_image : '../../../assets/logoAnywhereColorized.png'"
+        class="h-full w-full object-cover" />
+    </figure>
+    <div class="flex justify-between items-center gap-4">
+      <h1 class="font-bold text-2xl">{{userData.name + " " + userData.last_name}}</h1>
+      <!-- Opciones Admin -->
+      <!-- <div *ngIf="userData.tipo === 'admin'"> -->
+        <ion-button (click)="openMenu()">
+          <ion-icon name="ellipsis-horizontal-outline" size="40"></ion-icon>
+        </ion-button>
+      <!-- </div> -->
+    </div>
+
+
+    <div class="min-w-full">
+      <p class="font-semibold text-lg">Datos</p>
+      <p class="flex gap-2 items-center lowercase">
+        <ion-icon name="mail"></ion-icon>
+        <span>{{userData.email}}</span>
+      </p>
+      <p class="flex gap-2 items-center">
+        <ion-icon name="call"></ion-icon>
+        <span>{{userData.num_tel}}</span>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="bg-gray-200 block mt-3 pb-16 overflow-hidden rounded-md">
+    <h2 class="font-semibold text-black capitalize mx-2">Comentarios</h2>
+    <p class="mx-2" *ngIf="userData.comentarios.length < 1">No hay comentarios</p>
+    <div *ngFor="let comentario of userData.comentarios">
+      <app-card-comentario [comentario]="comentario"></app-card-comentario>
+    </div>
+  </div>
+</ion-content>
